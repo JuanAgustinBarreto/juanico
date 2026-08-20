@@ -27,6 +27,7 @@ const btnAbrir = $("btn-abrir");
 const btnConfirmar = $("btn-confirmar");
 const cuenta = $("cuenta");
 const cuentaFinal = $("cuenta-final");
+const musica = $("musica");
 
 const reducirMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -45,15 +46,18 @@ function cargarDatos() {
 }
 
 /** Transición de la pantalla de bienvenida a la invitación */
-const musica = $("musica");
+
 
 function abrirInvitacion() {
   pantalla.classList.add("saliendo");
   invitacion.classList.remove("oculto");
   invitacion.setAttribute("aria-hidden", "false");
 
+  // Iniciar música al tocar "APRETÁ AQUÍ"
   musica.volume = 0.45;
-  musica.play().catch(() => {});
+  musica.play().catch((error) => {
+    console.log("No se pudo iniciar la música:", error);
+  });
 
   window.setTimeout(() => {
     pantalla.classList.add("oculto");
@@ -66,7 +70,6 @@ function abrirInvitacion() {
     lanzarBolasPool();
   }, reducirMovimiento ? 0 : 700);
 }
-
 function lanzarBolasPool() {
   if (reducirMovimiento) return;
 
