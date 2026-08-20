@@ -488,7 +488,7 @@ html, body {
 
 /* =========================================================
    🎱 BOLAS DE POOL
-   Efecto especial al abrir la invitación
+   Blancas, amarillas y rojas
    ========================================================= */
 
 .bola-pool {
@@ -506,159 +506,45 @@ html, body {
 
   pointer-events: none;
 
-  overflow: hidden;
-
-  animation-name: caerBolaPool;
-  animation-duration: 5s;
-  animation-timing-function: cubic-bezier(.18,.65,.32,1);
-  animation-fill-mode: forwards;
-
   /*
-   * Brillo exterior
-   */
-  box-shadow:
-    0 7px 12px rgba(0, 0, 0, .28),
-    0 2px 4px rgba(0, 0, 0, .2);
-
-  /*
-   * Color base
+   * Color base + volumen
    */
   background:
     radial-gradient(
       circle at 31% 25%,
-      rgba(255,255,255,.95) 0%,
-      rgba(255,255,255,.45) 5%,
-      rgba(255,255,255,0) 15%
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(255, 255, 255, 0.5) 5%,
+      rgba(255, 255, 255, 0) 17%
     ),
     radial-gradient(
-      circle at 36% 30%,
-      #ffffff 0%,
-      rgba(255,255,255,.08) 12%,
-      transparent 25%
+      circle at 35% 30%,
+      rgba(255, 255, 255, 0.3),
+      transparent 30%
     ),
     var(--bola-color);
 
   /*
-   * Efecto de volumen 3D
+   * Volumen 3D
    */
+  box-shadow:
+    inset -7px -8px 12px rgba(0, 0, 0, 0.30),
+    inset 5px 5px 9px rgba(255, 255, 255, 0.45),
+    0 7px 13px rgba(0, 0, 0, 0.28);
+
   filter:
-    drop-shadow(0 4px 3px rgba(0,0,0,.2));
+    drop-shadow(0 4px 3px rgba(0, 0, 0, 0.18));
+
+  animation-name: caerBolaPool;
+  animation-duration: 5s;
+  animation-timing-function: cubic-bezier(.18, .65, .32, 1);
+  animation-fill-mode: forwards;
 
   transform-origin: center center;
 }
 
 
 /* =========================================================
-   BOLA RAYADA
-   ========================================================= */
-
-.bola-pool.rayada {
-  background:
-    /*
-     * Brillo
-     */
-    radial-gradient(
-      circle at 31% 24%,
-      rgba(255,255,255,.95) 0%,
-      rgba(255,255,255,.5) 5%,
-      rgba(255,255,255,0) 16%
-    ),
-
-    /*
-     * Banda blanca central
-     */
-    linear-gradient(
-      0deg,
-      var(--bola-color) 0%,
-      var(--bola-color) 28%,
-      #ffffff 29%,
-      #ffffff 71%,
-      var(--bola-color) 72%,
-      var(--bola-color) 100%
-    );
-
-  background-color: var(--bola-color);
-}
-
-
-/* =========================================================
-   BOLA NEGRA 8
-   ========================================================= */
-
-.bola-pool[data-numero="8"] {
-  background:
-    radial-gradient(
-      circle at 31% 25%,
-      rgba(255,255,255,.95) 0%,
-      rgba(255,255,255,.35) 5%,
-      rgba(255,255,255,0) 15%
-    ),
-    radial-gradient(
-      circle at 35% 32%,
-      #333 0%,
-      #111 45%,
-      #000 100%
-    );
-
-  box-shadow:
-    0 8px 14px rgba(0,0,0,.4),
-    inset -5px -6px 10px rgba(0,0,0,.5),
-    inset 4px 4px 7px rgba(255,255,255,.12);
-}
-
-
-/* =========================================================
-   NÚMERO DE LA BOLA
-   ========================================================= */
-
-.bola-pool::after {
-  content: attr(data-numero);
-
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  transform: translate(-50%, -50%);
-
-  width: 42%;
-  height: 42%;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #ffffff 0%,
-      #ffffff 70%,
-      #dedede 100%
-    );
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #111;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(8px, 1.2vw, 12px);
-  font-weight: 900;
-
-  line-height: 1;
-
-  text-shadow:
-    0 1px 0 rgba(255,255,255,.8);
-
-  box-shadow:
-    inset 1px 1px 3px rgba(0,0,0,.18),
-    0 1px 2px rgba(0,0,0,.25);
-
-  z-index: 5;
-}
-
-
-/* =========================================================
-   BRILLO DE LA BOLA
+   BRILLO
    ========================================================= */
 
 .bola-pool::before {
@@ -667,46 +553,29 @@ html, body {
   position: absolute;
 
   width: 24%;
-  height: 15%;
+  height: 14%;
 
   top: 17%;
   left: 22%;
 
   border-radius: 50%;
 
-  background: rgba(255,255,255,.9);
+  background: rgba(255, 255, 255, 0.9);
 
   filter: blur(1px);
 
   transform: rotate(-25deg);
-
-  z-index: 10;
 
   pointer-events: none;
 }
 
 
 /* =========================================================
-   SOMBRA INTERNA
-   ========================================================= */
-
-.bola-pool {
-  box-shadow:
-    inset -7px -8px 12px rgba(0,0,0,.35),
-    inset 5px 5px 9px rgba(255,255,255,.18),
-    0 7px 12px rgba(0,0,0,.28);
-}
-
-
-/* =========================================================
-   ANIMACIÓN DE CAÍDA + REBOTES
+   ANIMACIÓN
    ========================================================= */
 
 @keyframes caerBolaPool {
 
-  /*
-   * Entrada
-   */
   0% {
     opacity: 0;
 
@@ -716,9 +585,6 @@ html, body {
       scale(.75);
   }
 
-  /*
-   * Aparece
-   */
   8% {
     opacity: 1;
 
@@ -732,9 +598,6 @@ html, body {
       scale(1);
   }
 
-  /*
-   * Caída
-   */
   42% {
     transform:
       translate3d(
@@ -746,9 +609,6 @@ html, body {
       scale(1);
   }
 
-  /*
-   * Cerca del suelo
-   */
   67% {
     transform:
       translate3d(
@@ -760,9 +620,7 @@ html, body {
       scale(1);
   }
 
-  /*
-   * Primer impacto
-   */
+  /* Primer impacto */
   72% {
     transform:
       translate3d(
@@ -774,9 +632,7 @@ html, body {
       scale(1.04, .92);
   }
 
-  /*
-   * Primer rebote
-   */
+  /* Primer rebote */
   78% {
     transform:
       translate3d(
@@ -788,9 +644,7 @@ html, body {
       scale(.96, 1.04);
   }
 
-  /*
-   * Segundo impacto
-   */
+  /* Segundo impacto */
   84% {
     transform:
       translate3d(
@@ -802,9 +656,7 @@ html, body {
       scale(1.03, .94);
   }
 
-  /*
-   * Segundo rebote
-   */
+  /* Segundo rebote */
   89% {
     transform:
       translate3d(
@@ -816,9 +668,7 @@ html, body {
       scale(.98, 1.02);
   }
 
-  /*
-   * Se va
-   */
+  /* Salida */
   100% {
     opacity: 0;
 
@@ -835,7 +685,7 @@ html, body {
 
 
 /* =========================================================
-   REDUCIR MOVIMIENTO
+   ACCESIBILIDAD
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -855,9 +705,5 @@ html, body {
   .bola-pool {
     width: 34px;
     height: 34px;
-  }
-
-  .bola-pool::after {
-    font-size: 8px;
   }
 }
