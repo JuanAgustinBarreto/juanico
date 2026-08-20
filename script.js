@@ -73,61 +73,63 @@ function abrirInvitacion() {
 function lanzarBolasPool() {
   if (reducirMovimiento) return;
 
-  const bolas = [
-    { numero: 1, color: "#f5c518", tipo: "lisa" },
-    { numero: 2, color: "#174ea6", tipo: "lisa" },
-    { numero: 3, color: "#d62828", tipo: "lisa" },
-    { numero: 4, color: "#6a3fa0", tipo: "lisa" },
-    { numero: 5, color: "#f28c28", tipo: "lisa" },
-    { numero: 6, color: "#168a45", tipo: "lisa" },
-    { numero: 7, color: "#8b1e2d", tipo: "lisa" },
-    { numero: 8, color: "#111111", tipo: "lisa" },
-
-    { numero: 9, color: "#f5c518", tipo: "rayada" },
-    { numero: 10, color: "#174ea6", tipo: "rayada" },
-    { numero: 11, color: "#d62828", tipo: "rayada" },
-    { numero: 12, color: "#6a3fa0", tipo: "rayada" },
-    { numero: 13, color: "#f28c28", tipo: "rayada" },
-    { numero: 14, color: "#168a45", tipo: "rayada" },
-    { numero: 15, color: "#8b1e2d", tipo: "rayada" }
+  const colores = [
+    "#f4f1e8", // blanco
+    "#e8b923", // amarillo
+    "#c83232"  // rojo
   ];
 
-  bolas.forEach((bola, index) => {
+  for (let i = 0; i < 15; i++) {
     const elemento = document.createElement("div");
 
-    elemento.className = `bola-pool ${bola.tipo}`;
+    elemento.className = "bola-pool";
 
-    elemento.dataset.numero = bola.numero;
+    // Color aleatorio
+    const color =
+      colores[Math.floor(Math.random() * colores.length)];
 
-    elemento.style.setProperty("--bola-color", bola.color);
+    elemento.style.setProperty(
+      "--bola-color",
+      color
+    );
 
+    // Tamaño ligeramente variable
     const tamaño = 38 + Math.random() * 12;
+
     elemento.style.width = `${tamaño}px`;
     elemento.style.height = `${tamaño}px`;
 
-    elemento.style.left = `${Math.random() * 94 + 3}vw`;
+    // Posición horizontal
+    elemento.style.left =
+      `${Math.random() * 94 + 3}vw`;
 
+    // Movimiento lateral
     elemento.style.setProperty(
       "--desplazamiento",
       `${-80 + Math.random() * 160}px`
     );
 
+    // Rotación
     elemento.style.setProperty(
       "--rotacion",
       `${500 + Math.random() * 500}deg`
     );
 
-    elemento.style.animationDelay = `${Math.random() * 1.2}s`;
+    // Aparición escalonada
+    elemento.style.animationDelay =
+      `${Math.random() * 1.2}s`;
 
+    // Duración
     elemento.style.animationDuration =
       `${4.5 + Math.random() * 2.5}s`;
 
     document.body.appendChild(elemento);
 
-    elemento.addEventListener("animationend", () => {
-      elemento.remove();
-    });
-  });
+    elemento.addEventListener(
+      "animationend",
+      () => elemento.remove()
+    );
+  }
 }
 
 /** Arma el link de WhatsApp y lo abre */
