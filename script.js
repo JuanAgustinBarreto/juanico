@@ -53,25 +53,35 @@ function abrirInvitacion() {
   window.setTimeout(() => {
     pantalla.classList.add("oculto");
     invitacion.scrollIntoView({ behavior: reducirMovimiento ? "auto" : "smooth", block: "start" });
-    lanzarConfeti(50);
+    lanzarBolasPool(18);
   }, reducirMovimiento ? 0 : 700);
 }
 
-/** Confeti dorado hecho solo con JS + CSS */
-function lanzarConfeti(cantidad) {
+function lanzarBolasPool(cantidad) {
   if (reducirMovimiento) return;
-  const colores = ["#c9a659", "#a9873f", "#1c3b2a", "#2c5540"];
+
+  const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   for (let i = 0; i < cantidad; i++) {
-    const p = document.createElement("i");
-    p.className = "confeti";
-    p.style.left = Math.random() * 100 + "vw";
-    p.style.background = colores[Math.floor(Math.random() * colores.length)];
-    p.style.animationDuration = 2.6 + Math.random() * 2.4 + "s";
-    p.style.animationDelay = Math.random() * 0.8 + "s";
-    p.style.opacity = String(0.6 + Math.random() * 0.4);
-    document.body.appendChild(p);
-    p.addEventListener("animationend", () => p.remove());
+    const bola = document.createElement("div");
+    bola.className = "bola-pool";
+
+    const numero = numeros[Math.floor(Math.random() * numeros.length)];
+    bola.dataset.numero = numero;
+
+    bola.style.left = Math.random() * 100 + "vw";
+    bola.style.animationDuration = 4 + Math.random() * 4 + "s";
+    bola.style.animationDelay = Math.random() * 1.5 + "s";
+
+    const tamaño = 34 + Math.random() * 18;
+    bola.style.width = tamaño + "px";
+    bola.style.height = tamaño + "px";
+
+    document.body.appendChild(bola);
+
+    bola.addEventListener("animationend", () => {
+      bola.remove();
+    });
   }
 }
 
