@@ -7,7 +7,7 @@ const CONFIG = {
   fecha: "19 de diciembre",
   hora: "21:00 hs",
   lugar: "Salón La Familia",
-  direccion: "Feliciano 448",
+  direccion: "Feliciano 443",
   telefono: "5493435451818", // sin +, sin espacios
   valor: "$40.000",
 };
