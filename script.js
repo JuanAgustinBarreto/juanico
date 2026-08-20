@@ -10,6 +10,7 @@ const CONFIG = {
   direccion: "Feliciano 443",
   telefono: "5493435451818", // sin +, sin espacios
   valor: "$40.000",
+  alias: "los80dejuanico",
 };
 
 // Fecha y hora del evento para el contador (año, mes-1, día, hora, minuto)
