@@ -45,14 +45,24 @@ function cargarDatos() {
 }
 
 /** Transición de la pantalla de bienvenida a la invitación */
+const musica = $("musica");
+
 function abrirInvitacion() {
   pantalla.classList.add("saliendo");
   invitacion.classList.remove("oculto");
   invitacion.setAttribute("aria-hidden", "false");
 
+  musica.volume = 0.45;
+  musica.play().catch(() => {});
+
   window.setTimeout(() => {
     pantalla.classList.add("oculto");
-    invitacion.scrollIntoView({ behavior: reducirMovimiento ? "auto" : "smooth", block: "start" });
+
+    invitacion.scrollIntoView({
+      behavior: reducirMovimiento ? "auto" : "smooth",
+      block: "start"
+    });
+
     lanzarBolasPool();
   }, reducirMovimiento ? 0 : 700);
 }
