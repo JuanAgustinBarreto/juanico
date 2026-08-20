@@ -53,36 +53,68 @@ function abrirInvitacion() {
   window.setTimeout(() => {
     pantalla.classList.add("oculto");
     invitacion.scrollIntoView({ behavior: reducirMovimiento ? "auto" : "smooth", block: "start" });
-    lanzarBolasPool(18);
+    lanzarBolasPool();
   }, reducirMovimiento ? 0 : 700);
 }
 
-function lanzarBolasPool(cantidad) {
+function lanzarBolasPool() {
   if (reducirMovimiento) return;
 
-  const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  const bolas = [
+    { numero: 1, color: "#f5c518", tipo: "lisa" },
+    { numero: 2, color: "#174ea6", tipo: "lisa" },
+    { numero: 3, color: "#d62828", tipo: "lisa" },
+    { numero: 4, color: "#6a3fa0", tipo: "lisa" },
+    { numero: 5, color: "#f28c28", tipo: "lisa" },
+    { numero: 6, color: "#168a45", tipo: "lisa" },
+    { numero: 7, color: "#8b1e2d", tipo: "lisa" },
+    { numero: 8, color: "#111111", tipo: "lisa" },
 
-  for (let i = 0; i < cantidad; i++) {
-    const bola = document.createElement("div");
-    bola.className = "bola-pool";
+    { numero: 9, color: "#f5c518", tipo: "rayada" },
+    { numero: 10, color: "#174ea6", tipo: "rayada" },
+    { numero: 11, color: "#d62828", tipo: "rayada" },
+    { numero: 12, color: "#6a3fa0", tipo: "rayada" },
+    { numero: 13, color: "#f28c28", tipo: "rayada" },
+    { numero: 14, color: "#168a45", tipo: "rayada" },
+    { numero: 15, color: "#8b1e2d", tipo: "rayada" }
+  ];
 
-    const numero = numeros[Math.floor(Math.random() * numeros.length)];
-    bola.dataset.numero = numero;
+  bolas.forEach((bola, index) => {
+    const elemento = document.createElement("div");
 
-    bola.style.left = Math.random() * 100 + "vw";
-    bola.style.animationDuration = 4 + Math.random() * 4 + "s";
-    bola.style.animationDelay = Math.random() * 1.5 + "s";
+    elemento.className = `bola-pool ${bola.tipo}`;
 
-    const tamaño = 34 + Math.random() * 18;
-    bola.style.width = tamaño + "px";
-    bola.style.height = tamaño + "px";
+    elemento.dataset.numero = bola.numero;
 
-    document.body.appendChild(bola);
+    elemento.style.setProperty("--bola-color", bola.color);
 
-    bola.addEventListener("animationend", () => {
-      bola.remove();
+    const tamaño = 38 + Math.random() * 12;
+    elemento.style.width = `${tamaño}px`;
+    elemento.style.height = `${tamaño}px`;
+
+    elemento.style.left = `${Math.random() * 94 + 3}vw`;
+
+    elemento.style.setProperty(
+      "--desplazamiento",
+      `${-80 + Math.random() * 160}px`
+    );
+
+    elemento.style.setProperty(
+      "--rotacion",
+      `${500 + Math.random() * 500}deg`
+    );
+
+    elemento.style.animationDelay = `${Math.random() * 1.2}s`;
+
+    elemento.style.animationDuration =
+      `${4.5 + Math.random() * 2.5}s`;
+
+    document.body.appendChild(elemento);
+
+    elemento.addEventListener("animationend", () => {
+      elemento.remove();
     });
-  }
+  });
 }
 
 /** Arma el link de WhatsApp y lo abre */
