@@ -158,45 +158,7 @@ function actualizarContador() {
   $("c-min").textContent = Math.floor((seg % 3600) / 60);
   $("c-seg").textContent = seg % 60;
 }
-/* ----------------------------------------------------------
-   COPIAR ALIAS
----------------------------------------------------------- */
-let idTimeoutCopia = null;
 
-async function copiarAlias() {
-  try {
-    await navigator.clipboard.writeText(CONFIG.alias);
-    mostrarConfirmacionCopia();
-  } catch (error) {
-    // Alternativa para navegadores sin soporte de clipboard API
-    copiarAliasAlternativo();
-  }
-}
-
-function copiarAliasAlternativo() {
-  const areaTemporal = document.createElement("textarea");
-  areaTemporal.value = CONFIG.alias;
-  areaTemporal.setAttribute("readonly", "");
-  areaTemporal.style.position = "absolute";
-  areaTemporal.style.left = "-9999px";
-  document.body.appendChild(areaTemporal);
-  areaTemporal.select();
-  try {
-    document.execCommand("copy");
-    mostrarConfirmacionCopia();
-  } catch (error) {
-    console.error("No se pudo copiar el alias:", error);
-  }
-  document.body.removeChild(areaTemporal);
-}
-
-function mostrarConfirmacionCopia() {
-  dom.confirmacionCopia.classList.add("visible");
-  if (idTimeoutCopia) window.clearTimeout(idTimeoutCopia);
-  idTimeoutCopia = window.setTimeout(() => {
-    dom.confirmacionCopia.classList.remove("visible");
-  }, 2600);
-}
 /* =======================================================
    4) EVENTOS E INICIO
    ======================================================= */
