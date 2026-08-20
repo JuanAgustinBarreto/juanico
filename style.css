@@ -488,16 +488,16 @@ html, body {
 
 /* =========================================================
    🎱 BOLAS DE POOL
-   Blancas, amarillas y rojas
+   Blancas · Amarillas · Rojas
+   Todas lisas, sin números
    ========================================================= */
 
 .bola-pool {
   --bola-color: #ffffff;
 
   position: fixed;
-  top: -80px;
-
-  z-index: 9999;
+  top: -70px;
+  left: 0;
 
   width: 44px;
   height: 44px;
@@ -505,62 +505,64 @@ html, body {
   border-radius: 50%;
 
   pointer-events: none;
+  z-index: 9999;
 
   /*
-   * Color base + volumen
+   * Base + volumen de la esfera
    */
   background:
     radial-gradient(
-      circle at 31% 25%,
-      rgba(255, 255, 255, 0.98) 0%,
-      rgba(255, 255, 255, 0.5) 5%,
-      rgba(255, 255, 255, 0) 17%
+      circle at 30% 24%,
+      rgba(255,255,255,.98) 0%,
+      rgba(255,255,255,.72) 5%,
+      rgba(255,255,255,0) 17%
     ),
     radial-gradient(
-      circle at 35% 30%,
-      rgba(255, 255, 255, 0.3),
-      transparent 30%
+      circle at 38% 34%,
+      rgba(255,255,255,.18),
+      transparent 35%
     ),
     var(--bola-color);
 
   /*
-   * Volumen 3D
+   * Sombreado interno + sombra exterior
    */
   box-shadow:
-    inset -7px -8px 12px rgba(0, 0, 0, 0.30),
-    inset 5px 5px 9px rgba(255, 255, 255, 0.45),
-    0 7px 13px rgba(0, 0, 0, 0.28);
+    inset -8px -9px 13px rgba(0,0,0,.28),
+    inset 5px 5px 9px rgba(255,255,255,.48),
+    0 7px 14px rgba(0,0,0,.25);
 
   filter:
-    drop-shadow(0 4px 3px rgba(0, 0, 0, 0.18));
-
-  animation-name: caerBolaPool;
-  animation-duration: 5s;
-  animation-timing-function: cubic-bezier(.18, .65, .32, 1);
-  animation-fill-mode: forwards;
+    drop-shadow(0 4px 3px rgba(0,0,0,.16));
 
   transform-origin: center center;
+
+  animation:
+    caerBolaPool
+    5.2s
+    cubic-bezier(.18,.65,.32,1)
+    forwards;
 }
 
 
-/* =========================================================
-   BRILLO
-   ========================================================= */
+/* ---------------------------------------------------------
+   REFLEJO DE LUZ
+   --------------------------------------------------------- */
 
 .bola-pool::before {
   content: "";
 
   position: absolute;
 
-  width: 24%;
-  height: 14%;
+  top: 14%;
+  left: 21%;
 
-  top: 17%;
-  left: 22%;
+  width: 25%;
+  height: 14%;
 
   border-radius: 50%;
 
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255,255,255,.92);
 
   filter: blur(1px);
 
@@ -570,21 +572,23 @@ html, body {
 }
 
 
-/* =========================================================
+/* ---------------------------------------------------------
    ANIMACIÓN
-   ========================================================= */
+   --------------------------------------------------------- */
 
 @keyframes caerBolaPool {
 
+  /* Entrada */
   0% {
     opacity: 0;
 
     transform:
-      translate3d(0, -100px, 0)
+      translate3d(0,-100px,0)
       rotate(0deg)
-      scale(.75);
+      scale(.72);
   }
 
+  /* Aparece */
   8% {
     opacity: 1;
 
@@ -598,6 +602,7 @@ html, body {
       scale(1);
   }
 
+  /* Caída */
   42% {
     transform:
       translate3d(
@@ -609,6 +614,7 @@ html, body {
       scale(1);
   }
 
+  /* Cerca del piso */
   67% {
     transform:
       translate3d(
@@ -620,7 +626,7 @@ html, body {
       scale(1);
   }
 
-  /* Primer impacto */
+  /* Impacto */
   72% {
     transform:
       translate3d(
@@ -629,7 +635,7 @@ html, body {
         0
       )
       rotate(calc(var(--rotacion) * .78))
-      scale(1.04, .92);
+      scale(1.05,.91);
   }
 
   /* Primer rebote */
@@ -641,7 +647,7 @@ html, body {
         0
       )
       rotate(calc(var(--rotacion) * .85))
-      scale(.96, 1.04);
+      scale(.96,1.04);
   }
 
   /* Segundo impacto */
@@ -653,7 +659,7 @@ html, body {
         0
       )
       rotate(calc(var(--rotacion) * .92))
-      scale(1.03, .94);
+      scale(1.04,.93);
   }
 
   /* Segundo rebote */
@@ -665,10 +671,10 @@ html, body {
         0
       )
       rotate(var(--rotacion))
-      scale(.98, 1.02);
+      scale(.98,1.02);
   }
 
-  /* Salida */
+  /* Desaparición */
   100% {
     opacity: 0;
 
@@ -684,26 +690,26 @@ html, body {
 }
 
 
-/* =========================================================
-   ACCESIBILIDAD
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .bola-pool {
-    display: none;
-  }
-}
-
-
-/* =========================================================
+/* ---------------------------------------------------------
    MÓVIL
-   ========================================================= */
+   --------------------------------------------------------- */
 
 @media (max-width: 600px) {
 
   .bola-pool {
     width: 34px;
     height: 34px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   REDUCIR MOVIMIENTO
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .bola-pool {
+    display: none;
   }
 }
