@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>80 Años — Invitación</title>
+<meta name="description" content="Invitación digital para celebrar los 80 años. 19 de diciembre de 2026." />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<main>
+
+  <!-- ETAPA 1 — PANTALLA DE BIENVENIDA -->
+  <section id="bienvenida" class="pantalla" aria-label="Bienvenida">
+    <!-- COLOCÁ LA FOTO EN: img/abuelo.jpg -->
+    <img class="foto" src="img/abuelo.jpg" alt="Retrato del abuelo que cumple 80 años" />
+    <div class="velo"></div>
+
+    <div class="bienvenida-contenido">
+      <p class="intro anim a1">Hay momentos que merecen ser celebrados...</p>
+      <h1 class="ochenta anim a2">80 <span>AÑOS</span></h1>
+      <div class="filete anim a3"><span></span>&#10022;<span></span></div>
+      <p class="sub anim a4">Una vida llena de historias, recuerdos y personas que lo quieren.</p>
+      <button id="btn-abrir" class="btn btn-dorado anim a5" type="button">APRETÁ AQUÍ</button>
+    </div>
+  </section>
+
+  <!-- ETAPA 2 — INVITACIÓN -->
+  <section id="invitacion" class="invitacion oculto" aria-label="Invitación" aria-hidden="true">
+    <article class="tarjeta">
+      <div class="marco">
+        <p class="etiqueta">CELEBRAMOS</p>
+        <p class="etiqueta2">LOS 80 AÑOS DE</p>
+        <h2 id="nombre" class="nombre">Juanico</h2>
+
+        <div class="filete oscuro"><span></span>&#10022;<span></span></div>
+
+        <p id="fecha" class="fecha">19 DE DICIEMBRE</p>
+
+        <ul class="datos">
+          <li><strong>Hora:</strong> <span id="hora">21:00 hs</span></li>
+          <li><strong>Lugar:</strong> <span id="lugar">Salón La Familia</span></li>
+          <li><strong>Dirección:</strong> <span id="direccion">Feliciano 448</span></li>
+        </ul>
+
+        <section class="cuenta" id="cuenta" aria-label="Cuenta regresiva">
+          <div><b id="c-dias">0</b><small>DÍAS</small></div>
+          <div><b id="c-horas">0</b><small>HORAS</small></div>
+          <div><b id="c-min">0</b><small>MINUTOS</small></div>
+          <div><b id="c-seg">0</b><small>SEGUNDOS</small></div>
+        </section>
+        <p id="cuenta-final" class="cuenta-final oculto">¡Hoy es el gran día! 🥂</p>
+
+        <div class="valor">
+          <small>VALOR DE LA TARJETA</small>
+          <b id="valor">$40.000</b>
+        </div>
+
+        <p class="frase">80 años de historias, aprendizajes, momentos y recuerdos compartidos.</p>
+        <p class="frase fuerte">Queremos celebrar este día tan especial junto a vos.</p>
+
+        <button id="btn-confirmar" class="btn btn-confirmar" type="button">CONFIRMAR ASISTENCIA</button>
+
+        <footer class="gracias">Gracias por ser parte de este momento tan especial ❤️</footer>
+      </div>
+    </article>
+  </section>
+
+</main>
+<script src="script.js"></script>
+</body>
+</html>
