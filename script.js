@@ -9,7 +9,7 @@ const CONFIG = {
   lugar: "Salón La Familia",
   direccion: "Feliciano 443",
   telefono: "5493435451818", // sin +, sin espacios
-  valor: "$40.000",
+  valor: "$45.000",
   alias: "los80dejuanico",
 };
 
@@ -54,7 +54,7 @@ function abrirInvitacion() {
   invitacion.setAttribute("aria-hidden", "false");
 
   // Iniciar música al tocar "APRETÁ AQUÍ"
-  musica.volume = 0.45;
+  musica.volume = 0.60;
   musica.play().catch((error) => {
     console.log("No se pudo iniciar la música:", error);
   });
